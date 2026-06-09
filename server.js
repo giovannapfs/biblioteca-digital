@@ -4,11 +4,13 @@ const connectDB = require("./config/config");
 
 const Book = require("./models/book");
 const validateTitle = require("./middlewares/validateTitle");
+const bookRoutes = require('./routes/bookRoutes');
 
 const app = express();
 
 connectDB();
 app.use(express.json());
+app.use('/api', bookRoutes);
 
 //adicionando um novo livro
 app.post("/api/books", validateTitle, async (req, res) => {
