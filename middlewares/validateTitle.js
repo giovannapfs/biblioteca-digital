@@ -1,14 +1,13 @@
 const validateTitle = (req, res, next) => {
- const { title, author, year, genre } = req.body;
+  const { title } = req.body;
 
-
- if (!title || typeof title !== "string" || title.length < 3) {
-   return res
-     .status(400)
-     .json({
-       error: "O título é obrigatório e deve ter pelo menos 3 caracteres.",
-     });
- }
-}
+  if (!title || typeof title !== "string" || title.length < 3) {
+    return res.status(400).json({
+      error: "O título é obrigatório e deve ter pelo menos 3 caracteres.",
+    });
+  }
+console.log("Passou validateTitle");
+  next();
+};
 
 module.exports = validateTitle;
