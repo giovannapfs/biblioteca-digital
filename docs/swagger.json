@@ -1,0 +1,169 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Biblioteca Digital API",
+    "description": "Documentação da API da Biblioteca Digital"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "paths": {
+    "/books": {
+      "post": {
+        "summary": "Criar um novo livro",
+        "description": "Adiciona um novo livro à biblioteca digital.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados do livro a ser criado",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "O Senhor dos Anéis"
+                },
+                "author": {
+                  "type": "string",
+                  "example": "J.R.R. Tolkien"
+                },
+                "year": {
+                  "type": "integer",
+                  "example": 1954
+                },
+                "genre": {
+                  "type": "string",
+                  "example": "Fantasia"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Livro criado com sucesso"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      },
+      "get": {
+        "summary": "Listar livros",
+        "description": "Lista todos os livros da biblioteca digital.",
+        "responses": {
+          "200": {
+            "description": "Livros listados com sucesso"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    },
+    "/books/{id}": {
+      "get": {
+        "summary": "Buscar um livro pelo ID",
+        "description": "Busca um livro específico pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do livro",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livro encontrado com sucesso"
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Atualizar informações de um livro",
+        "description": "Atualiza informações de um livro existente.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do livro",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dados do livro a serem atualizados",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "O Senhor dos Anéis"
+                },
+                "author": {
+                  "type": "string",
+                  "example": "J.R.R. Tolkien"
+                },
+                "year": {
+                  "type": "integer",
+                  "example": 1954
+                },
+                "genre": {
+                  "type": "string",
+                  "example": "Fantasia"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livro atualizado com sucesso"
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Remover um livro da biblioteca",
+        "description": "Remove um livro da biblioteca pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID do livro",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Livro removido com sucesso"
+          },
+          "404": {
+            "description": "Livro não encontrado"
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    }
+  }
+}
